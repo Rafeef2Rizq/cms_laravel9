@@ -72,7 +72,6 @@
             });
         });
     </script>
-    These corrections should resolve the errors in your code.
     
     
     

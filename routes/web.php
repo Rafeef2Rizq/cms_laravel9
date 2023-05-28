@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::controller(AdminController::class)->group(function () {
+Route::controller(AdminController::class)->middleware('auth')->group(function () {
     Route::get('/admin/logout', 'destroy')->name('admin.logout');
     Route::get('/admin/profile', 'profile')->name('admin.profile');
     Route::get('/edit/profile', 'editProfile')->name('edit.profile');
@@ -37,6 +38,14 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/change/password', 'changePassword')->name('change.password');
     Route::post('/update/password', 'updatePassword')->name('update.password');
 });
+Route::controller(HomeSliderController::class)->middleware('auth')->group(function () {
+    Route::get('/home/slide', 'homeSlider')->name('home.slide');
+    Route::post('/update/slider', 'updateSlider')->name('update.slider');
 
+   
+});
+Route::get('/index', function () {
+    return view('frontend.index');
+})->middleware(['auth'])->name('index');
 
 require __DIR__.'/auth.php';

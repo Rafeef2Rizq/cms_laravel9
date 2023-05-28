@@ -58,8 +58,13 @@
             </div>
 
            @php
-             $id=Auth::user()->id;
-        $admindata=App\Models\User::find($id);    
+             $id=Auth::user()->id ??null;
+             if ($id !== null) {
+                $admindata=App\Models\User::find($id); 
+                } else {
+                    return redirect('/login'); // Redirect to the login page
+                }
+          
 
            @endphp
 
