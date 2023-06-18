@@ -100,6 +100,11 @@
         <script src="path/to/jquery.min.js"></script>
          {{-- Toster alert js --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+              <!--tinymce js-->
+              <script src="{{asset('backend/assets/libs/tinymce/tinymce.min.js')}}"></script>
+
+              <!-- init js -->
+              <script src="{{asset('backend/assets/js/pages/form-editor.init.js')}}"></script>
         <script>
             @if(Session::has('message'))
                 var type = "{{ Session::get('alert-type', 'info') }}";
